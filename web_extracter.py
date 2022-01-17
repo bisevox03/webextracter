@@ -3,10 +3,17 @@
 # if you try importing without installing them, this step will fail
 from bs4 import BeautifulSoup
 import requests 
+import argparse
+
+#tool decription and the srgparse commands init
+parser = argparse.ArgumentParser(description="This is a Web Extracter Tool")
+parser.add_argument("-u", type=str, help="Domain", required=True)
+
+x = parser.parse_args()
 
 # replace testurl.com with the url you want to use.
 # requests.get downloads the webpage and stores it as a variable
-html = requests.get('http://10.10.80.26:80') 
+html = requests.get(x.d) 
 
 # this parses the webpage into something that beautifulsoup can read over
 soup = BeautifulSoup(html.text, "lxml")
